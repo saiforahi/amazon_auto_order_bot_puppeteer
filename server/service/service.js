@@ -138,14 +138,17 @@ class Service {
     // }
 
     static async sendPostRequest (){
-        try {
-            const resp = await axios.post('https://www.opulentdistributionllc.com/api/v1/getAmazonOrderData', {amazon_buyer_account:process.env.EMAIL});
-            console.log('orders from response ----- ',resp.data.data.length);
-            return resp.data.data
-        } catch (err) {
-            // Handle Error Here
-            console.error(err);
-        }
+        return new Promise(async(res,rej)=>{
+            try {
+                const resp = await axios.post('https://www.opulentdistributionllc.com/api/v1/getAmazonOrderData', {amazon_buyer_account:process.env.EMAIL});
+                console.log('orders from response ----- ',resp.data.data.length);
+                res(resp.data.data)
+                //return resp.data.data
+            } catch (err) {
+                // Handle Error Here
+                console.error(err);
+            }
+        })
     }
 
     static async update_amazon_order_number_API (order_id,order_number){
