@@ -49,7 +49,7 @@ const captchaSolver = async (page) => {
             })
             await page.waitForTimeout(15000);
             console.log('capRequestData--------', capRequestData);
-            const orders=Service.sendPostRequest()
+            //const orders=Service.sendPostRequest()
             let captchaResponse
             while (1) {
                 await page.waitForTimeout(5000);
@@ -818,42 +818,47 @@ async function fetchDetails(result) {
 const amazon = async (count, i) => {
     logger.info({message:'process start------'})
     console.log('calling API ----- ')
-    const getProductAsin = await Service.sendPostRequest();
+    //const getProductAsin = await Service.sendPostRequest();
+    axios.post('https://www.opulentdistributionllc.com/api/v1/getAmazonOrderData', {amazon_buyer_account:'mikebuyer8@gmail.com'}).then(async(resp)=>{
+        //console.log('total orders from response ----- ',resp.data.data.length);
+        const getProductAsin=resp.data.data
+        console.log('totaldata.........', getProductAsin.length);
+        try {
+            let total = getProductAsin;
+            let filtered = [];
+            let isFetching = true;
+            while (isFetching) {
+                let start = 0;
+                let end = 99;
+                let temp = [];
+                filtered = total.filter((res, index) => {
+                    if (start <= index && end >= index) {
+                        return true;
+                    } else {
+                        temp.push(res);
+                        return false;
+                    }
+                });
+                total = temp;
+                console.log('total--', total.length);
+                console.log('filtered--', filtered.length);
+                await fetchDetails(filtered);
+                if (total.length === 0) {
+                    isFetching = false;
+                }
+                //break;
+            }
+
+        } catch (error) {
+            console.log('364..error..........', error);
+            logger.error({ message: error })
+        }
+    });
     // let getProductAsin = [{
     //     asin: 'B071G7Y8J2',
     //     orderPrice: '15.24'
     // }];
-    console.log('totaldata.........', getProductAsin.length);
-    try {
-        let total = getProductAsin;
-        let filtered = [];
-        let isFetching = true;
-        while (isFetching) {
-            let start = 0;
-            let end = 99;
-            let temp = [];
-            filtered = total.filter((res, index) => {
-                if (start <= index && end >= index) {
-                    return true;
-                } else {
-                    temp.push(res);
-                    return false;
-                }
-            });
-            total = temp;
-            console.log('total--', total.length);
-            console.log('filtered--', filtered.length);
-            await fetchDetails(filtered);
-            if (total.length === 0) {
-                isFetching = false;
-            }
-            //break;
-        }
-
-    } catch (error) {
-        console.log('364..error..........', error);
-        logger.error({ message: error })
-    }
+    
 }
 // amazon();
 module.exports = amazon;
