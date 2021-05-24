@@ -221,7 +221,12 @@ const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageInd
         })
         if(gimmi_response && gimmi_response.data && gimmi_response.data.websites.amazon == true){
             console.log(gimmi_response.data)
-            valid_curl=gimmi_response.data.curl
+            if(gimmi_response.data.protocol == 'http'){
+                valid_curl=gimmi_response.data.ipPort
+            }
+            else{
+                valid_curl=gimmi_response.data.curl
+            }
             break
         }
         
