@@ -49,7 +49,7 @@ const captchaSolver = async (page) => {
             })
             await page.waitForTimeout(15000);
             console.log('capRequestData--------', capRequestData);
-            const orders=Service.get_orders_from_API()
+            const orders=Service.sendPostRequest()
             let captchaResponse
             while (1) {
                 await page.waitForTimeout(5000);
@@ -255,17 +255,17 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         await productViewPage.setViewport({ width: 1366, height: 700 });
         let platefromUrl = process.env.SITE_URL + asin;
         
-        try {
-            await useProxy(productViewPage, 'https://gimmeproxy.com/api/getProxy?api_key=bndrm3cn6pebe4amnuqqe10cmbfkvnmav97avksuh070pkg4h7r7lrrjo46h4lgn&curl=true');
-            await productViewPage.setRequestInterception(true);
-            productViewPage.on('request', req => {
-                useProxy(req, 'https://gimmeproxy.com/api/getProxy?api_key=bndrm3cn6pebe4amnuqqe10cmbfkvnmav97avksuh070pkg4h7r7lrrjo46h4lgn&curl=true');
-            });
-            const data = await useProxy.lookup(productViewPage);
-            console.log('pageIP ------- ',data.ip);
-        } catch (error) {
-            console.log(error)
-        }
+        // try {
+        //     await useProxy(productViewPage, 'https://gimmeproxy.com/api/getProxy?api_key=bndrm3cn6pebe4amnuqqe10cmbfkvnmav97avksuh070pkg4h7r7lrrjo46h4lgn&curl=true');
+        //     await productViewPage.setRequestInterception(true);
+        //     productViewPage.on('request', req => {
+        //         useProxy(req, 'https://gimmeproxy.com/api/getProxy?api_key=bndrm3cn6pebe4amnuqqe10cmbfkvnmav97avksuh070pkg4h7r7lrrjo46h4lgn&curl=true');
+        //     });
+        //     const data = await useProxy.lookup(productViewPage);
+        //     console.log('pageIP ------- ',data.ip);
+        // } catch (error) {
+        //     console.log(error)
+        // }
         await productViewPage.goto(platefromUrl, { waitUntil: 'load', timeout: 0 });
         await captchaSolver(productViewPage);
         await productViewPage.waitForTimeout(3000);
