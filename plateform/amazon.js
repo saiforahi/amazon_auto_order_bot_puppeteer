@@ -276,7 +276,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         // } catch (error) {
         //     console.log(error)
         // }
-        await productViewPage.setRequestInterceptionEnabled(true);
+        await productViewPage.setRequestInterception(true);
         await productViewPage.goto(platefromUrl, { waitUntil: 'load', timeout: 0 });
         await captchaSolver(productViewPage);
         await productViewPage.waitForTimeout(3000);
