@@ -221,12 +221,13 @@ const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageInd
         })
         if(gimmi_response && gimmi_response.data && gimmi_response.data.websites.amazon == true){
             console.log(gimmi_response.data)
-            if(gimmi_response.data.protocol == 'http'){
-                valid_curl=gimmi_response.data.ipPort
-            }
-            else{
-                valid_curl=gimmi_response.data.curl
-            }
+            // if(gimmi_response.data.protocol == 'http'){
+            //     valid_curl=gimmi_response.data.ipPort
+            // }
+            // else{
+            //     valid_curl=gimmi_response.data.curl
+            // }
+            valid_curl=gimmi_response.data.curl
             break
         }
         
@@ -241,7 +242,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         timeout: 0,
         ignoreHTTPSErrors: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security', '--proxy-server='+curl,
-            '--disable-features=IsolateOrigins,site-per-process']
+            '--disable-features=IsolateOrigins,site-per-process','--disable-dev-shm-usage']
     });
     // let productViewPage = 'page_' + pageIndex;
     let productViewPage = await browser.newPage();
