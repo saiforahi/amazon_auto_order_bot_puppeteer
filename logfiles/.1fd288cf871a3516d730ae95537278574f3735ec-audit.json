@@ -1,0 +1,109 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\.1fd288cf871a3516d730ae95537278574f3735ec-audit.json",
+    "files": [
+        {
+            "date": 1617096819967,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-30-04.log",
+            "hash": "bbae85f0674c850d07e56f036a97e063"
+        },
+        {
+            "date": 1617107691370,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-30-07.log",
+            "hash": "6850db33544621372761fafb2f9fd802"
+        },
+        {
+            "date": 1617109300659,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-30-08.log",
+            "hash": "4941df320156ebf12b713f60fbe74527"
+        },
+        {
+            "date": 1617112815938,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-30-09.log",
+            "hash": "fbd6cf98186ba6d9ae5bca0be7f4096c"
+        },
+        {
+            "date": 1617124084238,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-30-12.log",
+            "hash": "82eadaaf35b3021b111503567f2424b1"
+        },
+        {
+            "date": 1617174409025,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-31-02.log",
+            "hash": "1f69c670cfb51ddcae8642c841d1ab94"
+        },
+        {
+            "date": 1617184197511,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-31-04.log",
+            "hash": "f014a2681659513badc64cfb828a9cea"
+        },
+        {
+            "date": 1617184804001,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-31-05.log",
+            "hash": "a0d9651997ac91715bea92e684459b38"
+        },
+        {
+            "date": 1617189192362,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-31-06.log",
+            "hash": "4f76b15d0ade17e5faafdcfdc64808be"
+        },
+        {
+            "date": 1617192462302,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-31-07.log",
+            "hash": "4c4880c40265a07aa26726fc9ecaffae"
+        },
+        {
+            "date": 1617197945313,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-31-08.log",
+            "hash": "77e66a44ca82a258dca731f4e2455451"
+        },
+        {
+            "date": 1617199456312,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-03-31-09.log",
+            "hash": "8b90aabb152d66222024d0b5b63559ed"
+        },
+        {
+            "date": 1617256027218,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-04-01-00.log",
+            "hash": "c4d579441a2fc77ec4bfb1ef6e47002d"
+        },
+        {
+            "date": 1617265749107,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-04-01-03.log",
+            "hash": "bc6ddaa51955d6e2af64a89fe3a523f4"
+        },
+        {
+            "date": 1617267659705,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-04-01-04.log",
+            "hash": "8574d9ffd272af7a1b0c82f569fcc14c"
+        },
+        {
+            "date": 1617283403676,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-04-01-08.log",
+            "hash": "0b5c89a4aee453d9adf0cfdccba47085"
+        },
+        {
+            "date": 1617426676286,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-04-03-00.log",
+            "hash": "f49a6cd9ae53e895ca6d4d904afa90de"
+        },
+        {
+            "date": 1617430954501,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-04-03-01.log",
+            "hash": "448183cab22ec9f58ebec0cbaae2f57d"
+        },
+        {
+            "date": 1617451169804,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-04-03-06.log",
+            "hash": "f1440a5fe840af2362a571e6824ae48b"
+        },
+        {
+            "date": 1617460418807,
+            "name": "C:\\Users\\Administrator\\Desktop\\amazon_bot\\apcs\\logfiles\\application-2021-04-03-09.log",
+            "hash": "1e2781de0c7b8d1d1ab05c4447d43c56"
+        }
+    ]
+}

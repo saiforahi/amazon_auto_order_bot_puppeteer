@@ -1,0 +1,79 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/.a23f41b6424ba71e7361ac6bf78d95b82c1774ca-audit.json",
+    "files": [
+        {
+            "date": 1616418988472,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-22-18.log",
+            "hash": "4745b289993773b7ea068fa25107ade9"
+        },
+        {
+            "date": 1616480139316,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-23-11.log",
+            "hash": "cc1dcaffe85496bfa0b9098530eefa08"
+        },
+        {
+            "date": 1616481821105,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-23-12.log",
+            "hash": "134effad19b350ba29141c3dee59a4c5"
+        },
+        {
+            "date": 1616486938595,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-23-13.log",
+            "hash": "39279e6b25fc881c00b1eeba33402330"
+        },
+        {
+            "date": 1616647210454,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-25-10.log",
+            "hash": "7c38a77db59153fa5ca0dc4e0d9eee8a"
+        },
+        {
+            "date": 1616651639333,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-25-11.log",
+            "hash": "01b5e86ba18014f556e997891a3c7e52"
+        },
+        {
+            "date": 1616667296110,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-25-15.log",
+            "hash": "9125bcb9136c2ab8cc13ad7a6544c9c0"
+        },
+        {
+            "date": 1616669104577,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-25-16.log",
+            "hash": "a7082b4e491d91d04ec454484085b4f4"
+        },
+        {
+            "date": 1616672152113,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-25-17.log",
+            "hash": "8ca7c4b9c3deecf3f7a4ec9417e41462"
+        },
+        {
+            "date": 1616829393118,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-27-12.log",
+            "hash": "064cf8d1b1ac6f5ea16559ff7e5b2a24"
+        },
+        {
+            "date": 1616831681576,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-27-13.log",
+            "hash": "0a416d4f7a65307cc12aaa810c28cf0f"
+        },
+        {
+            "date": 1616833916077,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-27-14.log",
+            "hash": "215cbf9e357cd3e9d11bade8f98ed5d8"
+        },
+        {
+            "date": 1616854085422,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-27-19.log",
+            "hash": "69044936ccd59eb4aa1403575990afa4"
+        },
+        {
+            "date": 1616858428842,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-27-20.log",
+            "hash": "adcac0cc71686f18a5d8ef3d2489232d"
+        }
+    ]
+}

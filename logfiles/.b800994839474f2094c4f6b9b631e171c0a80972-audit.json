@@ -1,0 +1,134 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\.b800994839474f2094c4f6b9b631e171c0a80972-audit.json",
+    "files": [
+        {
+            "date": 1620075483485,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-03-15.log",
+            "hash": "fb0708c71f0566d6e6910535b3842067"
+        },
+        {
+            "date": 1620075820189,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-03-16.log",
+            "hash": "825c50e726290e9ef9d43979ae38cedf"
+        },
+        {
+            "date": 1620079757362,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-03-17.log",
+            "hash": "0910ced9a71680fae9ab43c95cdfa470"
+        },
+        {
+            "date": 1620088506099,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-03-19.log",
+            "hash": "cd925e9b0ac3799b01b0a08cde9827d3"
+        },
+        {
+            "date": 1620134588913,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-04-08.log",
+            "hash": "e73b038bbc939b5f84f9af99cb2321ea"
+        },
+        {
+            "date": 1620141821345,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-04-10.log",
+            "hash": "b975eb1dc422b4512a56eff36730a6c3"
+        },
+        {
+            "date": 1620150464027,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-04-12.log",
+            "hash": "24f909745c92fbde8d4c812224385123"
+        },
+        {
+            "date": 1620151263703,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-04-13.log",
+            "hash": "1745280c8b24952fd1876d3d51e8caea"
+        },
+        {
+            "date": 1620225328528,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-05-09.log",
+            "hash": "67616185b565405cd20c20448e25d733"
+        },
+        {
+            "date": 1620230244489,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-05-10.log",
+            "hash": "74447d8e06c7d7140b75eaa20319e9e9"
+        },
+        {
+            "date": 1620238869175,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-05-13.log",
+            "hash": "51e50ea5e551577dec1bb9e3e76863f3"
+        },
+        {
+            "date": 1620309534365,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-06-08.log",
+            "hash": "04399e13b8f152f513600daba8d066a4"
+        },
+        {
+            "date": 1620318147976,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-06-11.log",
+            "hash": "8b467f1a4518cfb9abc7da08cf064cd1"
+        },
+        {
+            "date": 1620326829570,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-06-13.log",
+            "hash": "303f57885f4963546b10261879eaf7da"
+        },
+        {
+            "date": 1620338291807,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-06-16.log",
+            "hash": "e76c58cbe5628215c39438548a28f807"
+        },
+        {
+            "date": 1620381114078,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-07-04.log",
+            "hash": "ecbdd906ed7567e394bcc56741d72cce"
+        },
+        {
+            "date": 1620383452930,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-07-05.log",
+            "hash": "8e45493e3fc06bfbb61ab15fb893eb2d"
+        },
+        {
+            "date": 1620385489089,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-07-06.log",
+            "hash": "57e2f9d559c1fa111913f6307cf44548"
+        },
+        {
+            "date": 1620393776282,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-07-08.log",
+            "hash": "03c83937fa963f38e952810507219679"
+        },
+        {
+            "date": 1620398207785,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-07-09.log",
+            "hash": "a3f64c45b1aaa90c85fd1729d1d70d8e"
+        },
+        {
+            "date": 1620401668582,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-07-10.log",
+            "hash": "a981e5c4d0d4d1b7ab0e79950e1c6d31"
+        },
+        {
+            "date": 1620409615147,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-07-12.log",
+            "hash": "2c7ec03dbfb5e58bfa5111a15e550264"
+        },
+        {
+            "date": 1620411979446,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-07-13.log",
+            "hash": "21cb312b796e63ec61483ecd03ae9db4"
+        },
+        {
+            "date": 1620422108556,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-07-16.log",
+            "hash": "201cd7994b3f9908b92aac83386feb00"
+        },
+        {
+            "date": 1620493652109,
+            "name": "C:\\Users\\Administrator\\Downloads\\amazon_bot\\logfiles\\application-2021-05-08-12.log",
+            "hash": "8bc35b0745b7403b5683069ce25e0e65"
+        }
+    ]
+}

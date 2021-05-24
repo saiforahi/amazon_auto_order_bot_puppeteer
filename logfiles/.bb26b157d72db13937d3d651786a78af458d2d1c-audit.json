@@ -1,0 +1,104 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "C:\\projects\\mike_amazon_bot\\logfiles\\.bb26b157d72db13937d3d651786a78af458d2d1c-audit.json",
+    "files": [
+        {
+            "date": 1621152528960,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-16-14.log",
+            "hash": "ffb2430c4afd47947268d00174f78bb1"
+        },
+        {
+            "date": 1621155844800,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-16-15.log",
+            "hash": "2d375765befda0a7859a983c1bd25e8e"
+        },
+        {
+            "date": 1621159560095,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-16-16.log",
+            "hash": "fc094d1b891df9442077faa01022a98c"
+        },
+        {
+            "date": 1621163870343,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-16-17.log",
+            "hash": "119186b4c1920e9e34452c535106d8b1"
+        },
+        {
+            "date": 1621166528607,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-16-18.log",
+            "hash": "b39ea23910c04d72aea695943de863df"
+        },
+        {
+            "date": 1621170008431,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-16-19.log",
+            "hash": "1651f231b161581495466bf17a5ae55c"
+        },
+        {
+            "date": 1621173697960,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-16-20.log",
+            "hash": "87916455ee7ded1ac7a1e0661345715c"
+        },
+        {
+            "date": 1621372625984,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-19-03.log",
+            "hash": "9f99475ebd5f7ec37c9c53a5d94d4498"
+        },
+        {
+            "date": 1621443438160,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-19-22.log",
+            "hash": "9aa410a9d776fb190b1f0477040c4234"
+        },
+        {
+            "date": 1621443758782,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-19-23.log",
+            "hash": "3519ed8ed3cff5e50e7d12ccb133fd07"
+        },
+        {
+            "date": 1621491081497,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-20-12.log",
+            "hash": "258b658604744c5f59df7a2a7ef120bc"
+        },
+        {
+            "date": 1621534987015,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-21-00.log",
+            "hash": "9c249ca4a16256cb2e9635360dc8b713"
+        },
+        {
+            "date": 1621612833117,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-21-22.log",
+            "hash": "65f97a4a9d0be4cc048e79d74483df3d"
+        },
+        {
+            "date": 1621656618758,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-22-10.log",
+            "hash": "3aef4c2a8a78b2b8a5b41e113cafdd38"
+        },
+        {
+            "date": 1621668676383,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-22-13.log",
+            "hash": "8b316bdd10a1825f8e675c96524b9449"
+        },
+        {
+            "date": 1621674292774,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-22-15.log",
+            "hash": "2a7d0284c1f352cc4e0a8d5625626dce"
+        },
+        {
+            "date": 1621681190083,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-22-16.log",
+            "hash": "b0b072213ce709c2ba769e3598444aef"
+        },
+        {
+            "date": 1621681494187,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-22-17.log",
+            "hash": "7f21f08d187701bad45932d8281e50ab"
+        },
+        {
+            "date": 1621701201020,
+            "name": "C:\\projects\\mike_amazon_bot\\logfiles\\application-2021-05-22-22.log",
+            "hash": "c3fe1e0a7f0c7811c3a40e996b0ff291"
+        }
+    ]
+}

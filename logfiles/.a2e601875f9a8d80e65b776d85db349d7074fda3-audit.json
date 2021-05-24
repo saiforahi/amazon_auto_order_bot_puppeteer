@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "C:\\projects\\extensions\\amazon_bot\\logfiles\\.a2e601875f9a8d80e65b776d85db349d7074fda3-audit.json",
+    "files": [
+        {
+            "date": 1618941864254,
+            "name": "C:\\projects\\extensions\\amazon_bot\\logfiles\\application-2021-04-21-00.log",
+            "hash": "47735125498478db91b2616b556002c4"
+        }
+    ]
+}

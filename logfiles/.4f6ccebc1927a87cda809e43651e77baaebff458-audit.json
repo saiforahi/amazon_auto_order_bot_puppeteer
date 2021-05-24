@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/.4f6ccebc1927a87cda809e43651e77baaebff458-audit.json",
+    "files": [
+        {
+            "date": 1615975099558,
+            "name": "/home/lenovo/Desktop/scraping_project/amazon_purchase_product/logfiles/application-2021-03-17-15.log",
+            "hash": "aeac337864a9f39c947568b6791b4d69"
+        }
+    ]
+}

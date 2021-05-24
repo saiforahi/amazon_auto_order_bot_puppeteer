@@ -1,0 +1,19 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\.8c072f66012247011d481f44f502caeb25ccca5f-audit.json",
+    "files": [
+        {
+            "date": 1621793878014,
+            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-24-00.log",
+            "hash": "bb3e37e337864f8a421a23938bf209a1"
+        },
+        {
+            "date": 1621796509153,
+            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-24-01.log",
+            "hash": "9dfdfe89453daef30d7c908e3c896120"
+        }
+    ]
+}
