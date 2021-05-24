@@ -264,7 +264,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         productViewPage.setDefaultNavigationTimeout(0);
         await productViewPage.setViewport({ width: 1366, height: 700 });
         let platefromUrl = process.env.SITE_URL + asin;
-        
+        console.log('product asin ---- ',asin)
         // try {
         //     await useProxy(productViewPage, 'https://gimmeproxy.com/api/getProxy?api_key=bndrm3cn6pebe4amnuqqe10cmbfkvnmav97avksuh070pkg4h7r7lrrjo46h4lgn&curl=true');
         //     await productViewPage.setRequestInterception(true);
