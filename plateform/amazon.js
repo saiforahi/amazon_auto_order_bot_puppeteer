@@ -245,8 +245,14 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         headless: true,
         timeout: 0,
         ignoreHTTPSErrors: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security', '--proxy-server='+curl,
-            '--disable-features=IsolateOrigins,site-per-process','--disable-dev-shm-usage']
+        args: [
+            // '--no-sandbox', 
+            // '--disable-setuid-sandbox', 
+            // '--disable-web-security', 
+            '--proxy-server='+curl,
+            // '--disable-features=IsolateOrigins,site-per-process',
+            // '--disable-dev-shm-usage'
+        ]
     });
     // let productViewPage = 'page_' + pageIndex;
     let productViewPage = await browser.newPage();
