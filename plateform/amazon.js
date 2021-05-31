@@ -249,7 +249,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
             '--no-sandbox', 
             '--disable-setuid-sandbox', 
             '--disable-web-security',  
-            '--proxy-server='+curl,
+            //'--proxy-server='+curl,
             '--disable-features=IsolateOrigins,site-per-process',
             '--disable-dev-shm-usage'
         ]
@@ -271,18 +271,18 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         await productViewPage.setViewport({ width: 1366, height: 700 });
         let platefromUrl = process.env.SITE_URL + asin;
         console.log('product asin ---- ',asin)
-        // try {
-        //     await useProxy(productViewPage, 'https://gimmeproxy.com/api/getProxy?api_key=bndrm3cn6pebe4amnuqqe10cmbfkvnmav97avksuh070pkg4h7r7lrrjo46h4lgn&curl=true');
-        //     await productViewPage.setRequestInterception(true);
-        //     productViewPage.on('request', req => {
-        //         useProxy(req, 'https://gimmeproxy.com/api/getProxy?api_key=bndrm3cn6pebe4amnuqqe10cmbfkvnmav97avksuh070pkg4h7r7lrrjo46h4lgn&curl=true');
-        //     });
-        //     const data = await useProxy.lookup(productViewPage);
-        //     console.log('pageIP ------- ',data.ip);
-        // } catch (error) {
-        //     console.log(error)
-        // }
-        await productViewPage.setRequestInterception(true);
+        try {
+            await useProxy(productViewPage, curl);
+            await productViewPage.setRequestInterception(true);
+            productViewPage.on('request', req => {
+                useProxy(req, curl);
+            });
+            const data = await useProxy.lookup(productViewPage);
+            console.log('pageIP ------- ',data.ip);
+        } catch (error) {
+            console.log(error)
+        }
+        //await productViewPage.setRequestInterception(true);
         await productViewPage.goto(platefromUrl, { waitUntil: 'load', timeout: 0 });
         await captchaSolver(productViewPage);
         await productViewPage.waitForTimeout(3000);
