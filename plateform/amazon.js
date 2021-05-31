@@ -273,10 +273,10 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         console.log('product asin ---- ',asin)
         try {
             await useProxy(productViewPage, curl);
-            await productViewPage.setRequestInterception(true);
-            productViewPage.on('request', async req => {
-                await useProxy(req, curl);
-            });
+            // await productViewPage.setRequestInterception(true);
+            // productViewPage.on('request', async req => {
+            //     await useProxy(req, curl);
+            // });
             const data = await useProxy.lookup(productViewPage);
             console.log('pageIP ------- ',data.ip);
         } catch (error) {
