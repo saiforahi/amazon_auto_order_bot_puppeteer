@@ -286,7 +286,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         //await productViewPage.setRequestInterception(true);
         console.log('url to visit ----- ',platefromUrl)
         await productViewPage.goto(platefromUrl, {
-            waitUntil: 'networkidle2',
+            waitUntil: 'networkidle2', timeout: 0
           });
         await captchaSolver(productViewPage);
         await productViewPage.waitForTimeout(3000);
