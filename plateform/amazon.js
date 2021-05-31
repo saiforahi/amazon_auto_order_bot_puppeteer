@@ -284,7 +284,9 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         // }
         //await productViewPage.setRequestInterception(true);
         console.log('url to visit ----- ',platefromUrl)
-        await productViewPage.goto(platefromUrl, { waitUntil: 'load', timeout: 0 });
+        await productViewPage.goto(platefromUrl, {
+            waitUntil: 'networkidle2',
+          });
         await captchaSolver(productViewPage);
         await productViewPage.waitForTimeout(3000);
         if (await productViewPage.$('#priceblock_ourprice')) {
