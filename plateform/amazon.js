@@ -246,12 +246,12 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         timeout: 0,
         ignoreHTTPSErrors: true,
         args: [
-            // '--no-sandbox', 
-            // '--disable-setuid-sandbox', 
-            // '--disable-web-security', 
+            '--no-sandbox', 
+            '--disable-setuid-sandbox', 
+            '--disable-web-security',  
             '--proxy-server='+curl,
-            // '--disable-features=IsolateOrigins,site-per-process',
-            // '--disable-dev-shm-usage'
+            '--disable-features=IsolateOrigins,site-per-process',
+            '--disable-dev-shm-usage'
         ]
     });
     // let productViewPage = 'page_' + pageIndex;
@@ -726,6 +726,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         return;
     } catch (error) {
         console.log('error 287------', error);
+        console.log('url ---- ',productViewPage.url())
         logger.error({ message: error })
         await saveErrorImg(productViewPage);
     }finally{
