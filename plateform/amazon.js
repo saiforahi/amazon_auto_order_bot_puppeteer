@@ -227,7 +227,7 @@ const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageInd
             // else{
             //     valid_curl=gimmi_response.data.curl
             // }
-            valid_curl=gimmi_response.data.ipPort
+            valid_curl=gimmi_response.data.curl
             if(valid_curl.includes('<br>')){
                 valid_curl=valid_curl.slice(0,valid_curl.length-4)
             }
