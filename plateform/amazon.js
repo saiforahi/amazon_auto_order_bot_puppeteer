@@ -35,6 +35,7 @@ const captchaSolver = async (page) => {
             })
             console.log(captchaData.substring(1, 30), "....captchaData")
             var bodyFormData = new FormData();
+            console.log('captcha API key ----- ',process.env.CAPTCHA_API_KEY)
             bodyFormData.append('key', process.env.CAPTCHA_API_KEY);
             bodyFormData.append('method', 'base64');
             bodyFormData.append('body', captchaData);
