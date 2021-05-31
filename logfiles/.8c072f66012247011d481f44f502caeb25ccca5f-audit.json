@@ -6,39 +6,9 @@
     "auditLog": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\.8c072f66012247011d481f44f502caeb25ccca5f-audit.json",
     "files": [
         {
-            "date": 1621793878014,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-24-00.log",
-            "hash": "bb3e37e337864f8a421a23938bf209a1"
-        },
-        {
-            "date": 1621796509153,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-24-01.log",
-            "hash": "9dfdfe89453daef30d7c908e3c896120"
-        },
-        {
-            "date": 1621830467546,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-24-10.log",
-            "hash": "0b459f1c85cd76ea3755de11e3b3f707"
-        },
-        {
-            "date": 1621837537135,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-24-12.log",
-            "hash": "7d052aa1aa4f8a84e5d30c38ad205101"
-        },
-        {
-            "date": 1621839698138,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-24-13.log",
-            "hash": "1f3008baec3d65f8e4417f6a94e208c6"
-        },
-        {
-            "date": 1621846869433,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-24-15.log",
-            "hash": "a2bc3b68abd96d978bd978ea365df90d"
-        },
-        {
-            "date": 1621851471349,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-24-16.log",
-            "hash": "2fc77acb0a4f3efd803e80e33ca3b442"
+            "date": 1622472839872,
+            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-31-20.log",
+            "hash": "c55093ea9cf0df5a4c60a7c944a19a0a"
         }
     ]
 }
