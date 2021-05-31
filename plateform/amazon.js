@@ -249,7 +249,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
             '--no-sandbox', 
             '--disable-setuid-sandbox', 
             '--disable-web-security',  
-            //'--proxy-server='+curl,
+            '--proxy-server='+curl,
             '--disable-features=IsolateOrigins,site-per-process',
             '--disable-dev-shm-usage'
         ]
@@ -269,19 +269,19 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         //console.log('-result-------------',result);
         productViewPage.setDefaultNavigationTimeout(0);
         await productViewPage.setViewport({ width: 1366, height: 700 });
-        let platefromUrl = process.env.SITE_URL + asin;
+        let platefromUrl = 'https://www.amazon.com/dp/' + asin;
         console.log('product asin ---- ',asin)
-        try {
-            await useProxy(productViewPage, curl);
-            // await productViewPage.setRequestInterception(true);
-            // productViewPage.on('request', async req => {
-            //     await useProxy(req, curl);
-            // });
-            const data = await useProxy.lookup(productViewPage);
-            console.log('pageIP ------- ',data.ip);
-        } catch (error) {
-            console.log(error)
-        }
+        // try {
+        //     await useProxy(productViewPage, curl);
+        //     // await productViewPage.setRequestInterception(true);
+        //     // productViewPage.on('request', async req => {
+        //     //     await useProxy(req, curl);
+        //     // });
+        //     const data = await useProxy.lookup(productViewPage);
+        //     console.log('pageIP ------- ',data.ip);
+        // } catch (error) {
+        //     console.log(error)
+        // }
         //await productViewPage.setRequestInterception(true);
         console.log('url to visit ----- ',platefromUrl)
         await productViewPage.goto(platefromUrl, { waitUntil: 'load', timeout: 0 });
