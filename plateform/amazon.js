@@ -35,8 +35,8 @@ const captchaSolver = async (page) => {
             })
             console.log(captchaData.substring(1, 30), "....captchaData")
             var bodyFormData = new FormData();
-            console.log('captcha API key ----- ',process.env.CAPTCHA_API_KEY)
-            bodyFormData.append('key', process.env.CAPTCHA_API_KEY);
+            console.log('captcha API key ----- ','e5b71c604308ec55d002a5dae309bc2c')
+            bodyFormData.append('key', 'e5b71c604308ec55d002a5dae309bc2c');
             bodyFormData.append('method', 'base64');
             bodyFormData.append('body', captchaData);
             bodyFormData.append('json', 1);
@@ -57,7 +57,7 @@ const captchaSolver = async (page) => {
                 captchaResponse = await axios({
                     url: "http://2captcha.com/res.php",
                     params: {
-                        key: process.env.CAPTCHA_API_KEY,
+                        key:'e5b71c604308ec55d002a5dae309bc2c',
                         action: "get",
                         id: capRequestData.request,
                         json: 1
@@ -110,7 +110,7 @@ const secondCaptchaSolver = async (page) => {
             })
             console.log(captchaData.substring(1, 30), "....captchaData")
             var bodyFormData = new FormData();
-            bodyFormData.append('key', process.env.CAPTCHA_API_KEY);
+            bodyFormData.append('key', 'e5b71c604308ec55d002a5dae309bc2c');
             bodyFormData.append('method', 'base64');
             bodyFormData.append('body', captchaData);
             bodyFormData.append('json', 1);
@@ -130,7 +130,7 @@ const secondCaptchaSolver = async (page) => {
                 captchaResponse = await axios({
                     url: "http://2captcha.com/res.php",
                     params: {
-                        key: process.env.CAPTCHA_API_KEY,
+                        key: 'e5b71c604308ec55d002a5dae309bc2c',
                         action: "get",
                         id: capRequestData.request,
                         json: 1
@@ -163,7 +163,7 @@ const otpResolver = async (page,result) => {
     try {
         let res = await axios({
             method: 'post',
-            url: process.env.OTP_API_URL,
+            url: 'https://otp.opulentdistributionllc.com/sample/getDatas.php',
             data: {
                 "secret": result['otp_secret_key']
             }
