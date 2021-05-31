@@ -347,7 +347,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 console.log('buyNowButton-----', buyNowButton.length);
                 await buyNowButton[0].click();
                 // await productViewPage.waitForSelector("#ap_email", { visible: true, timeout: 0 });
-                console.log('enter email...', process.env.EMAIL);
+                console.log('enter email...', result['amazon_user_name']);
                 // await productViewPage.waitForTimeout(4000);
                 await productViewPage.waitForNavigation({ timeout: 0 });
                 //email
@@ -366,7 +366,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 }, result['amazon_user_name']);
                 await productViewPage.waitForTimeout(4000);
                 //password
-                console.log('enter password...', process.env.PASSWORD);
+                console.log('enter password...', 'Walmart123!');
                 await productViewPage.evaluate((PASSWORD) => {
                     return new Promise((res, rej) => {
                         let passwordEl = document.getElementById('ap_password');
@@ -392,7 +392,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                         }
                         res();
                     })
-                }, process.env.PASSWORD);
+                }, 'Walmart123!');
                 await secondCaptchaSolver(productViewPage)
                 console.log('click to continue');
                 await productViewPage.waitForTimeout(4000);
@@ -406,7 +406,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 //         }
                 //         res();
                 //     })
-                // }, process.env.PASSWORD);
+                // }, 'Walmart123!');
                 await otpResolver(productViewPage,result);
                 //select address for Deliver
                 console.log('result--------', result);
