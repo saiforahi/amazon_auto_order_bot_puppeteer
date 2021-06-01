@@ -243,7 +243,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
     let amazonProductPrice = 0, details = {}, amazonOrderNumber = '';
     // '--proxy-server='+curl,
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         timeout: 0,
         ignoreHTTPSErrors: true,
         args: [
@@ -286,7 +286,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         //await productViewPage.setRequestInterception(true);
         console.log('url to visit ----- ',platefromUrl)
         await productViewPage.goto(platefromUrl, {
-            waitUntil: 'networkidle2', timeout: 0
+            waitUntil: 'load', timeout: 0
           });
         await captchaSolver(productViewPage);
         await productViewPage.waitForTimeout(3000);
@@ -554,176 +554,212 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 }
 
                 await productViewPage.waitForTimeout(5000)
-                console.log('pressing payment continue')
-                if(await productViewPage.$('input[name="ppw-widgetEvent:SetPaymentPlanSelectContinueEvent"')){
-                    console.log('payment continue btn found ---- ')
+                console.log('checking break even price --- ')
+                let is_break_even_price_higher = true
+                if(await productViewPage.$('#subtotals-marketplace-table')){
+                    is_break_even_price_higher=await productViewPage.evaluate(()=>{
+                        return new Promise((res,rej)=>{
+                            let rows = document.querySelectorAll('#subtotals-marketplace-table tbody tr')
+                            let tableData = rows[rows.length-1].querySelector('td.a-color-price.a-size-medium.a-text-right.grand-total-price.aok-nowrap.a-text-bold.a-nowrap')[1]
+                            let price = tableData.innerText
+                            if(Number(price)>result['break_even_price']){
+                                //is_break_even_price_lower=true
+                                res(false)
+                            }
+                            else{
+                                //is_break_even_price_lower=false
+                                res(true)
+                            }
+                        })
+                    })
+                }
+                if(is_break_even_price_higher){
+                    await productViewPage.waitForTimeout(5000)
+                    console.log('pressing payment continue')
+                    if(await productViewPage.$('input[name="ppw-widgetEvent:SetPaymentPlanSelectContinueEvent"')){
+                        console.log('payment continue btn found ---- ')
+                        await productViewPage.evaluate(()=>{
+                            return new Promise((res,rej)=>{
+                                let continueButton=document.querySelector('input[name="ppw-widgetEvent:SetPaymentPlanSelectContinueEvent"')
+                                if(continueButton){
+                                    continueButton.click()
+                                }
+                                res()
+                            })
+                        })
+                    }
+                    
+                    //new customer order placing
+                    console.log('order button place order ');
+                    await productViewPage.waitForTimeout(5000)
                     await productViewPage.evaluate(()=>{
                         return new Promise((res,rej)=>{
-                            let continueButton=document.querySelector('input[name="ppw-widgetEvent:SetPaymentPlanSelectContinueEvent"')
-                            if(continueButton){
-                                continueButton.click()
+                            let element1=document.querySelector('#placeYourOrder span input[name="placeYourOrder1"]')
+                            let element2=document.querySelectorAll('#submitOrderButtonId span.a-button-inner input')[0]
+                            if(element1){
+                                console.log('place order button 1 found ---');
+                                element1.click() 
+                            }
+                            else if(element2){
+                                console.log('place order button 2 found ---');
+                                element2.click()
                             }
                             res()
                         })
                     })
-                }
-                
-                //new customer order placing
-                console.log('order button place order ');
-                await productViewPage.waitForTimeout(5000)
-                await productViewPage.evaluate(()=>{
-                    return new Promise((res,rej)=>{
-                        let element1=document.querySelector('#placeYourOrder span input[name="placeYourOrder1"]')
-                        let element2=document.querySelectorAll('#submitOrderButtonId span.a-button-inner input')[0]
-                        if(element1){
-                            console.log('place order button 1 found ---');
-                            element1.click() 
-                        }
-                        else if(element2){
-                            console.log('place order button 2 found ---');
-                            element2.click()
-                        }
-                        res()
-                    })
-                })
-                // console.log('ContinueButton click for address');
-                // await productViewPage.waitForNavigation({ waitUntil: 'domcontentloaded' })
-                // await productViewPage.waitForTimeout(3000);
-                // if (await productViewPage.$('.a-button.a-button-span12.a-button-primary.pmts-button-input')) {
-                //     await productViewPage.evaluate(() => {
-                //         return new Promise((res, rej) => {
-                //             //.a-button.a-button-span12.a-button-primary.pmts-button-input
-                //             let ContinueButton = document.querySelectorAll('.a-button.a-button-span12.a-button-primary.pmts-button-input');
-                //             console.log('continue----', ContinueButton);
-                //             if (ContinueButton && ContinueButton.length > 0) {
-                //                 ContinueButton[0].click();
-                //             }
-                //             res();
-                //         })
-                //     })
-                // }
-                //console.log('Place your order page');
-                // Place your order  #placeYourOrder
-                //document.querySelectorAll('.a-button-inner.a-button-span12.buy-button-height-1')[0].click()
-
-                // await productViewPage.waitForTimeout(3000);
-                //payment button add
-                //console.log('order button ');
-                // await productViewPage.evaluate(() => {
-                //     return new Promise((res, rej) => {
-                //         let ContinueButton = document.querySelectorAll('#orderSummaryPrimaryActionBtn input');
-                //         console.log('continue----', ContinueButton);
-                //         if (ContinueButton && ContinueButton.length > 0) {
-                //             ContinueButton[0].click();
-                //         }
-                //         res();
-                //     })
-                // })
-                
-                // await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
-                // await productViewPage.waitForTimeout(4000);
-                // await productViewPage.evaluate(() => {
-                //     return new Promise((res, rej) => {
-                //         //#submitOrderButtonId input
-                //         let ContinueButton = document.querySelectorAll('#submitOrderButtonId span.a-button-inner input');
-                //         console.log('continue----', ContinueButton);
-                //         if (ContinueButton && ContinueButton.length > 0) {
-                //             ContinueButton[0].click();
-                //         }
-                //         res();
-                //     })
-                // })
-                //Place this duplicate order  
-                //a-button-text
-                //console.log('palce orde.duplicate...');
-                // await productViewPage.waitForTimeout(4000);
-                // await productViewPage.evaluate(() => {
-                //     return new Promise((res, rej) => {
-                //         let buttonSelector = document.querySelectorAll('.a-button-text');
-                //         console.log('continue----', buttonSelector);
-                //         if (buttonSelector && buttonSelector.length > 0) {
-                //             buttonSelector[0].click();
-                //         }
-                //         res();
-                //     })
-                // })
-
-                console.log('order view link show.');
-                //orderId orderlink
-                await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
-                await productViewPage.goto('https://www.amazon.com/gp/css/order-history?ref_=abn_bnav_ya_ad_orders')
-                //await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
-                await productViewPage.waitForTimeout(4000);
-                // await productViewPage.hover('#nav-link-yourAccount')
-                // await productViewPage.waitForTimeout(4000);
-                // await productViewPage.evaluate(() => {
-                //     return new Promise((res, rej) => {
-                //         //a-link-emphasis
-                //         let yourOrders= document.getElementById('nav_prefetch_yourorders')
-                //         let selector = document.querySelectorAll('#widget-accountLevelActions div.celwidget span.celwidget a.a-link-emphasis');
-                //         console.log('continue----', selector);
-                //         if (selector && selector.length > 0) {
-                //             selector[0].click();
-                //         }
-                //         else if(yourOrders){
-                //             yourOrders.click()
-                //         }
-                //         res();
-                //     })
-                // })
-
-                console.log('amazonOrderId-----88--');
-                await productViewPage.waitForTimeout(4000)
-                let imagePath = path.join(__dirname, "..", "/assets", `/img1.png`);
-                // await saveErrorImg(productViewPage);
-                await productViewPage.screenshot({ path: imagePath });
-                // await productViewPage.waitForSelector("#ordersContainer .a-box-group.a-spacing-base .a-fixed-right-grid-col.actions.a-col-right", { visible: true });
-                let amazonOrderId = await productViewPage.evaluate(async () => {
-                    let id = '';
-                    if(document.querySelectorAll('div.a-row.a-size-mini span.a-color-secondary.value').length>0){
-                        console.log('html order element',document.querySelector('div.a-row.a-size-mini span.a-color-secondary').textContent)
-                        let element= document.querySelectorAll('div.a-row.a-size-mini span.a-color-secondary.value')[0]
-                        if(!element.textContent.includes('Order') && !element.textContent.includes('Total') && !element.textContent.includes('Ship to')&& !element.textContent.includes('Placed by')){
-                            // order_numbers.push(element.innerText)
-                            id=element.innerText
-                        }
-                    }
-                    else if(document.querySelectorAll('span.a-color-secondary.value bdi[dir="ltr"]').length>0){
-                        console.log('html order element',document.querySelector('span.a-color-secondary.value bdi[dir="ltr"]').textContent)
-                        let element= document.querySelectorAll('span.a-color-secondary.value bdi[dir="ltr"]')[0]
-                        if(element.textContent.length==17 && !element.textContent.includes('Order') && !element.textContent.includes('SHIP TO')&& !element.textContent.includes('PLACED BY') && !element.textContent.includes('Total')){
-                            // order_numbers.push(element.innerText)
-                            id=element.innerText
-                        }
-                    }
-        
-                    // return new Promise((res, rej) => {
-                    // let element = document.querySelectorAll('#ordersContainer .a-box-group.a-spacing-base .a-fixed-right-grid-col.actions.a-col-right');
-                    // console.log(element.length);
-                    // if (element && element.length > 0) {
-                    //     // id.push({ orderId: element[0].innerText.split("\n")[0].substr(8) })
-                    //     id = element[0].innerText.split("\n")[0].substr(8)
-                    //     // res(id);
+                    // console.log('ContinueButton click for address');
+                    // await productViewPage.waitForNavigation({ waitUntil: 'domcontentloaded' })
+                    // await productViewPage.waitForTimeout(3000);
+                    // if (await productViewPage.$('.a-button.a-button-span12.a-button-primary.pmts-button-input')) {
+                    //     await productViewPage.evaluate(() => {
+                    //         return new Promise((res, rej) => {
+                    //             //.a-button.a-button-span12.a-button-primary.pmts-button-input
+                    //             let ContinueButton = document.querySelectorAll('.a-button.a-button-span12.a-button-primary.pmts-button-input');
+                    //             console.log('continue----', ContinueButton);
+                    //             if (ContinueButton && ContinueButton.length > 0) {
+                    //                 ContinueButton[0].click();
+                    //             }
+                    //             res();
+                    //         })
+                    //     })
                     // }
-                    // });
-                    return id;
-                });
-                let imagePath1 = path.join(__dirname, "..", "/assets", `/img2.png`);
-                // await saveErrorImg(productViewPage);
-                await productViewPage.screenshot({ path: imagePath1 });
-                console.log('amazonOrderId-------', amazonOrderId);
+                    //console.log('Place your order page');
+                    // Place your order  #placeYourOrder
+                    //document.querySelectorAll('.a-button-inner.a-button-span12.buy-button-height-1')[0].click()
 
-                details = {
-                    asin: asin,
-                    amazon_order_number: amazonOrderId,
-                    purchaseOrderId: purchaseOrderId,
-                    customerOrderId: customerOrderId
+                    // await productViewPage.waitForTimeout(3000);
+                    //payment button add
+                    //console.log('order button ');
+                    // await productViewPage.evaluate(() => {
+                    //     return new Promise((res, rej) => {
+                    //         let ContinueButton = document.querySelectorAll('#orderSummaryPrimaryActionBtn input');
+                    //         console.log('continue----', ContinueButton);
+                    //         if (ContinueButton && ContinueButton.length > 0) {
+                    //             ContinueButton[0].click();
+                    //         }
+                    //         res();
+                    //     })
+                    // })
+                    
+                    // await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
+                    // await productViewPage.waitForTimeout(4000);
+                    // await productViewPage.evaluate(() => {
+                    //     return new Promise((res, rej) => {
+                    //         //#submitOrderButtonId input
+                    //         let ContinueButton = document.querySelectorAll('#submitOrderButtonId span.a-button-inner input');
+                    //         console.log('continue----', ContinueButton);
+                    //         if (ContinueButton && ContinueButton.length > 0) {
+                    //             ContinueButton[0].click();
+                    //         }
+                    //         res();
+                    //     })
+                    // })
+                    //Place this duplicate order  
+                    //a-button-text
+                    //console.log('palce orde.duplicate...');
+                    // await productViewPage.waitForTimeout(4000);
+                    // await productViewPage.evaluate(() => {
+                    //     return new Promise((res, rej) => {
+                    //         let buttonSelector = document.querySelectorAll('.a-button-text');
+                    //         console.log('continue----', buttonSelector);
+                    //         if (buttonSelector && buttonSelector.length > 0) {
+                    //             buttonSelector[0].click();
+                    //         }
+                    //         res();
+                    //     })
+                    // })
+
+                    console.log('order view link show.');
+                    //orderId orderlink
+                    await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
+                    await productViewPage.goto('https://www.amazon.com/gp/css/order-history?ref_=abn_bnav_ya_ad_orders')
+                    //await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
+                    await productViewPage.waitForTimeout(4000);
+                    // await productViewPage.hover('#nav-link-yourAccount')
+                    // await productViewPage.waitForTimeout(4000);
+                    // await productViewPage.evaluate(() => {
+                    //     return new Promise((res, rej) => {
+                    //         //a-link-emphasis
+                    //         let yourOrders= document.getElementById('nav_prefetch_yourorders')
+                    //         let selector = document.querySelectorAll('#widget-accountLevelActions div.celwidget span.celwidget a.a-link-emphasis');
+                    //         console.log('continue----', selector);
+                    //         if (selector && selector.length > 0) {
+                    //             selector[0].click();
+                    //         }
+                    //         else if(yourOrders){
+                    //             yourOrders.click()
+                    //         }
+                    //         res();
+                    //     })
+                    // })
+
+                    console.log('amazonOrderId-----88--');
+                    await productViewPage.waitForTimeout(4000)
+                    let imagePath = path.join(__dirname, "..", "/assets", `/img1.png`);
+                    // await saveErrorImg(productViewPage);
+                    await productViewPage.screenshot({ path: imagePath });
+                    // await productViewPage.waitForSelector("#ordersContainer .a-box-group.a-spacing-base .a-fixed-right-grid-col.actions.a-col-right", { visible: true });
+                    let amazonOrderId = await productViewPage.evaluate(async () => {
+                        let id = '';
+                        if(document.querySelectorAll('div.a-row.a-size-mini span.a-color-secondary.value').length>0){
+                            console.log('html order element',document.querySelector('div.a-row.a-size-mini span.a-color-secondary').textContent)
+                            let element= document.querySelectorAll('div.a-row.a-size-mini span.a-color-secondary.value')[0]
+                            if(!element.textContent.includes('Order') && !element.textContent.includes('Total') && !element.textContent.includes('Ship to')&& !element.textContent.includes('Placed by')){
+                                // order_numbers.push(element.innerText)
+                                id=element.innerText
+                            }
+                        }
+                        else if(document.querySelectorAll('span.a-color-secondary.value bdi[dir="ltr"]').length>0){
+                            console.log('html order element',document.querySelector('span.a-color-secondary.value bdi[dir="ltr"]').textContent)
+                            let element= document.querySelectorAll('span.a-color-secondary.value bdi[dir="ltr"]')[0]
+                            if(element.textContent.length==17 && !element.textContent.includes('Order') && !element.textContent.includes('SHIP TO')&& !element.textContent.includes('PLACED BY') && !element.textContent.includes('Total')){
+                                // order_numbers.push(element.innerText)
+                                id=element.innerText
+                            }
+                        }
+            
+                        // return new Promise((res, rej) => {
+                        // let element = document.querySelectorAll('#ordersContainer .a-box-group.a-spacing-base .a-fixed-right-grid-col.actions.a-col-right');
+                        // console.log(element.length);
+                        // if (element && element.length > 0) {
+                        //     // id.push({ orderId: element[0].innerText.split("\n")[0].substr(8) })
+                        //     id = element[0].innerText.split("\n")[0].substr(8)
+                        //     // res(id);
+                        // }
+                        // });
+                        return id;
+                    });
+                    let imagePath1 = path.join(__dirname, "..", "/assets", `/img2.png`);
+                    // await saveErrorImg(productViewPage);
+                    await productViewPage.screenshot({ path: imagePath1 });
+                    console.log('amazonOrderId-------', amazonOrderId);
+                    details = {
+                        asin: asin,
+                        amazon_order_number: amazonOrderId,
+                        purchaseOrderId: purchaseOrderId,
+                        customerOrderId: customerOrderId
+                    }
+                    console.log('details-----', details);
+                    if (details.amazon_order_number != '') {
+                        Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number);
+                        orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: amazonOrderId })
+                    }
                 }
-                console.log('details-----', details);
-                if (details.amazon_order_number != '') {
-                    Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number);
-                    orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: amazonOrderId })
+                else{
+                    details = {
+                        asin: asin,
+                        amazon_order_number: 'loss',
+                        purchaseOrderId: purchaseOrderId,
+                        customerOrderId: customerOrderId
+                    }
+                    console.log('details-----', details);
+                    if (details.amazon_order_number != '') {
+                        Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number);
+                        orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: amazonOrderId })
+                    }
                 }
+
+                
             }
         }
         // productViewPage.close();
