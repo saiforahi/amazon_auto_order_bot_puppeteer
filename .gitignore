@@ -34,8 +34,7 @@ build/Release
 
 # Dependency directories
 node_modules/
-assets/img1.png
-assets/img2.png
+assets/
 jspm_packages/
 package-lock.json
 logfiles/
