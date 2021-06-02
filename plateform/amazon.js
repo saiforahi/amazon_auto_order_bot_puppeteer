@@ -243,7 +243,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
     let amazonProductPrice = 0, details = {}, amazonOrderNumber = '';
     // '--proxy-server='+curl,
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         timeout: 0,
         ignoreHTTPSErrors: true,
         args: [
