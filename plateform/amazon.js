@@ -556,7 +556,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 await productViewPage.waitForTimeout(5000)
                 console.log('checking break even price --- ')
                 let is_break_even_price_higher = false
-                if(await productViewPage.$('#subtotals-marketplace-table')){
+                if(await productViewPage.$('#subtotals-marketplace-table') && result['break_even_price']!=null){
                     is_break_even_price_higher=await productViewPage.evaluate(()=>{
                         return new Promise((res,rej)=>{
                             let rows = document.querySelectorAll('#subtotals-marketplace-table tbody tr')
