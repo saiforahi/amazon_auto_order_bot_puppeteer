@@ -315,7 +315,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         }
         console.log('orderPrice------', typeof orderPrice, orderPrice, '..amazonProductPrice.......', typeof amazonProductPrice, amazonProductPrice);
         //await productViewPage.waitForTimeout(3000);
-        if ( amazonProductPrice > 0) {
+        if ( amazonProductPrice ) {
             console.log('if calling-----------');
             //One-time purchase:
             await productViewPage.waitForTimeout(4000);
