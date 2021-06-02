@@ -14,7 +14,7 @@ const orderIdlogger = require('../logger/orderIdLogger');
 const captchaSolver = async (page) => {
     try {
         console.log('resolving captcha ----- ')
-        //await page.setUserAgent(userAgent.toString());
+        await page.setUserAgent(userAgent.toString());
         await page.waitForTimeout(2000);
         if (await page.$('.a-box-inner .a-row.a-text-center')) {
             console.log('captch calling.......');
@@ -72,7 +72,7 @@ const captchaSolver = async (page) => {
                     break;
                 }
             }
-            await page.waitForTimeout(5000);
+            //await page.waitForTimeout(5000);
             await page.evaluate((captchaResponse) => {
                 let inputSlector = document.querySelectorAll('#captchacharacters');
                 inputSlector[0].value = captchaResponse.request;
