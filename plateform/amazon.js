@@ -71,6 +71,7 @@ const captchaSolver = async (page) => {
                     break;
                 }
             }
+            await page.waitForTimeout(5000);
             await page.evaluate((captchaResponse) => {
                 let inputSlector = document.querySelectorAll('#captchacharacters');
                 inputSlector[0].value = captchaResponse.request;
