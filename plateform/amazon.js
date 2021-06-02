@@ -556,13 +556,15 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 await productViewPage.waitForTimeout(5000)
                 console.log('checking break even price --- ')
                 let is_break_even_price_higher = true
+                let cart_price = 0
                 if(await productViewPage.$('#subtotals-marketplace-table')){
                     is_break_even_price_higher=await productViewPage.evaluate(()=>{
                         return new Promise((res,rej)=>{
                             let rows = document.querySelectorAll('#subtotals-marketplace-table tbody tr')
                             let tableData = rows[rows.length-1].querySelector('td.a-color-price.a-size-medium.a-text-right.grand-total-price.aok-nowrap.a-text-bold.a-nowrap')[1]
                             let price = tableData.innerText
-                            if(Number(price)>result['break_even_price']){
+                            cart_price=Number(price).toFixed(2)
+                            if(Number(price) > Number(result['break_even_price'])){
                                 //is_break_even_price_lower=true
                                 res(false)
                             }
@@ -741,7 +743,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                     }
                     console.log('details-----', details);
                     if (details.amazon_order_number != '') {
-                        Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number);
+                        Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number,cart_price);
                         orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: amazonOrderId })
                     }
                 }
@@ -754,7 +756,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                     }
                     console.log('details-----', details);
                     if (details.amazon_order_number != '') {
-                        Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number);
+                        Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number,cart_price);
                         orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: amazonOrderId })
                     }
                 }
