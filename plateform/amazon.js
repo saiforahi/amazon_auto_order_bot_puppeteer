@@ -563,9 +563,9 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                         return new Promise((res,rej)=>{
                             let rows = document.querySelectorAll('#subtotals-marketplace-table tbody tr')
                             let tableData = rows[rows.length-1].querySelector('td.a-color-price.a-size-medium.a-text-right.grand-total-price.aok-nowrap.a-text-bold.a-nowrap')
-                            let price = tableData.innerText
+                            let price = tableData.innerText.replace('$','').trim()
                             cart_price=Number(price).toFixed(2)
-                            if(Number(price) > Number(result['break_even_price'])){
+                            if(parseFloat(price) > parseFloat(result['break_even_price'])){
                                 //is_break_even_price_lower=true
                                 res(false)
                             }
@@ -584,7 +584,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                         return new Promise((res,rej)=>{
                             let rows = document.querySelectorAll('#subtotals-marketplace-table tbody tr')
                             let tableData = rows[rows.length-1].querySelector('td.a-color-price.a-size-medium.a-text-right.grand-total-price.aok-nowrap.a-text-bold.a-nowrap')
-                            let price = tableData.innerText
+                            let price = tableData.innerText.replace('$','').trim()
                             cart_price=Number(price).toFixed(2)
                             res(cart_price)
                         })
@@ -592,7 +592,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 }
                 console.log('cart price ---- ',cart_price)
                 console.log('break even price status ----- ',is_break_even_price_higher)
-                if(is_break_even_price_higher){
+                if(!is_break_even_price_higher){
                     await productViewPage.waitForTimeout(5000)
                     console.log('pressing payment continue')
                     if(await productViewPage.$('input[name="ppw-widgetEvent:SetPaymentPlanSelectContinueEvent"')){
