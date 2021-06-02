@@ -245,7 +245,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
     let amazonProductPrice = 0, details = {}, amazonOrderNumber = '';
     // '--proxy-server='+curl,
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         timeout: 0,
         ignoreHTTPSErrors: true,
         args: [
@@ -288,8 +288,8 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         //await productViewPage.setRequestInterception(true);
         console.log('url to visit ----- ',platefromUrl)
         await productViewPage.goto(platefromUrl, {
-            waitUntil: ['networkidle0', 'load', 'domcontentloaded'], timeout: 0
-          });
+            waitUntil: 'load', timeout: 0
+        });
         await captchaSolver(productViewPage);
         await productViewPage.waitForTimeout(3000);
         if (await productViewPage.$('#priceblock_ourprice')) {
@@ -315,7 +315,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         }
         console.log('orderPrice------', typeof orderPrice, orderPrice, '..amazonProductPrice.......', typeof amazonProductPrice, amazonProductPrice);
         //await productViewPage.waitForTimeout(3000);
-        if (orderPrice >= amazonProductPrice && amazonProductPrice > 0) {
+        if ( amazonProductPrice > 0) {
             console.log('if calling-----------');
             //One-time purchase:
             await productViewPage.waitForTimeout(4000);
@@ -847,7 +847,7 @@ async function fetchDetails(result) {
                 asin = asin.replace(/\"/g, "");
                 let dbPrice = JSON.stringify(result[pageIndex].selling_price)
                 dbPrice = dbPrice.replace(/\"/g, "");
-                let orderPrice = Number(dbPrice);
+                let orderPrice = JSON.stringify(result[pageIndex].selling_price);
                 let customerOrderId = JSON.stringify(result[pageIndex].customerOrderId);
                 customerOrderId = customerOrderId.replace(/\"/g, "");
                 let amazon_order_number = JSON.stringify(result[pageIndex].amazon_order_number);
