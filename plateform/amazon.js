@@ -222,7 +222,7 @@ const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageInd
             method:'get',
             url:'https://gimmeproxy.com/api/getProxy?api_key=514b2f69-76d5-4458-b667-2227c1f7b29e&country=US'
         })
-        if(gimmi_response && gimmi_response.data && gimmi_response.data.websites.amazon == true){
+        if(gimmi_response && gimmi_response.data && gimmi_response.data.websites.amazon == true && parseFloat(gimmi_response.data.speed)>100){
             console.log(gimmi_response.data)
             // if(gimmi_response.data.protocol == 'http'){
             //     valid_curl=gimmi_response.data.ipPort
