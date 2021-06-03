@@ -245,7 +245,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
     let amazonProductPrice = 0, details = {}, amazonOrderNumber = '';
     // '--proxy-server='+curl,
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         timeout: 0,
         ignoreHTTPSErrors: true,
         args: [
@@ -328,6 +328,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                     res()
                 })
             });
+            await productViewPage.waitForTimeout(4000);
             if (await productViewPage.$('#buy-now-button')) {
                 //selct qyt
                 let SelectedOption = await productViewPage.evaluate((result) => {
