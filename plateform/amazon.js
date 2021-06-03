@@ -607,7 +607,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                     })
                 }
                 console.log('cart price ---- ',cart_price)
-                if(is_break_even_price_higher == true){
+                if(1 == 1 ){
                     await productViewPage.waitForTimeout(5000)
                     console.log('pressing payment continue')
                     if(await productViewPage.$('input[name="ppw-widgetEvent:SetPaymentPlanSelectContinueEvent"')){
