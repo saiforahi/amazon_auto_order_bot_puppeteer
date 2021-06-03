@@ -372,20 +372,22 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 }, result['amazon_user_name']);
                 await productViewPage.waitForTimeout(4000);
                 //password
-                console.log('enter password...', 'Walmart123!');
-                await productViewPage.evaluate((PASSWORD) => {
-                    return new Promise((res, rej) => {
-                        let passwordEl = document.getElementById('ap_password');
-                        if (passwordEl) {
-                            passwordEl.value = PASSWORD;
-                            let signInButton = document.getElementById('signInSubmit');
-                            signInButton.click();
-                            // document.getElementById('#signInSubmit').click();
-                        }
+                if(await productViewPage.$('#ap_password')){
+                    console.log('enter password...', 'Walmart123!');
+                    await productViewPage.evaluate((PASSWORD) => {
+                        return new Promise((res, rej) => {
+                            let passwordEl = document.getElementById('ap_password');
+                            if (passwordEl) {
+                                passwordEl.value = PASSWORD;
+                                let signInButton = document.getElementById('signInSubmit');
+                                signInButton.click();
+                                // document.getElementById('#signInSubmit').click();
+                            }
 
-                        res();
-                    })
-                }, result['password']);
+                            res();
+                        })
+                    }, result['password']);
+                }
 
                 //
                 await productViewPage.waitForTimeout(4000);
@@ -416,7 +418,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 await otpResolver(productViewPage,result);
                 //select address for Deliver
                 console.log('result--------', result);
-                await productViewPage.waitForNavigation();
+                await productViewPage.waitForNavigation({ timeout: 0 });
                 //turbo-checkout-pyo-button
                 await productViewPage.waitForTimeout(4000);
                 await productViewPage.evaluate(() => {
