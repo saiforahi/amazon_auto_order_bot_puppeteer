@@ -607,7 +607,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                     })
                 }
                 console.log('cart price ---- ',cart_price)
-                if(is_break_even_price_higher){
+                if(is_break_even_price_higher == true){
                     await productViewPage.waitForTimeout(5000)
                     console.log('pressing payment continue')
                     if(await productViewPage.$('input[name="ppw-widgetEvent:SetPaymentPlanSelectContinueEvent"')){
@@ -779,7 +779,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                         orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: amazonOrderId })
                     }
                 }
-                else if(!is_break_even_price_higher){
+                else if(is_break_even_price_higher == false){
                     details = {
                         asin: asin,
                         amazon_order_number: 'loss',
