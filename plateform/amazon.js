@@ -245,7 +245,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
     let amazonProductPrice = 0, details = {}, amazonOrderNumber = '';
     // '--proxy-server='+curl,
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         timeout: 0,
         ignoreHTTPSErrors: true,
         args: [
@@ -431,6 +431,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 });
                 //PO check
                 if(await productViewPage.$('span.a-button-inner input[value="Continue"]')){
+                    console.log('PO found and pressing continue ------ ')
                     await productViewPage.waitForTimeout(4000);
                     await productViewPage.evaluate(()=>{
                         return new Promise((res,rej)=>{
@@ -441,18 +442,20 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                     })
                 }
                 //shipper add
-
-                await productViewPage.waitForTimeout(4000);
-                await productViewPage.evaluate(() => {
-                    return new Promise((res, rej) => {
-                        let addButton = document.querySelectorAll('.a-color-base.clickable-heading.expand-collapsed-panel-trigger');
-                        console.log(addButton);
-                        if (addButton.length > 0) {
-                            addButton[1].click();
-                        }
-                        res()
-                    })
-                });
+                if(await productViewPage.$$('.a-color-base.clickable-heading.expand-collapsed-panel-trigger').length>0){
+                    console.log('adding shipper ------ ')
+                    await productViewPage.waitForTimeout(4000);
+                    await productViewPage.evaluate(() => {
+                        return new Promise((res, rej) => {
+                            let addButton = document.querySelectorAll('.a-color-base.clickable-heading.expand-collapsed-panel-trigger');
+                            console.log(addButton);
+                            if (addButton.length > 0) {
+                                addButton[1].click();
+                            }
+                            res()
+                        })
+                    });
+                }
 
                 await productViewPage.waitForTimeout(4000);
                 await productViewPage.evaluate(() => {
