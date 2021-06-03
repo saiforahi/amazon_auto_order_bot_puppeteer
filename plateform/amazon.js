@@ -572,7 +572,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 }
                 
                 await productViewPage.waitForTimeout(10000)
-                let is_break_even_price_higher = false
+                let is_break_even_price_higher = ''
                 if(await productViewPage.$('#subtotals-marketplace-table')){
                     console.log('checking break even price --- ')
                     is_break_even_price_higher=await productViewPage.evaluate((result)=>{
@@ -779,7 +779,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                         orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: amazonOrderId })
                     }
                 }
-                else{
+                else if(!is_break_even_price_higher){
                     details = {
                         asin: asin,
                         amazon_order_number: 'loss',
