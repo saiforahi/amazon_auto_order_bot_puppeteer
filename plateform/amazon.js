@@ -182,8 +182,8 @@ const otpResolver = async (page,result) => {
 
                 }
             });
-            await page.waitForTimeout(4000);
-            // await page.waitForNavigation({ waitUntil: 'load' })
+            //await page.waitForTimeout(4000);
+            await page.waitForNavigation({ waitUntil: 'load' })
             await page.evaluate(async (optCode) => {
                 //.a-input-text.a-span12.cvf-widget-input.cvf-widget-input-code
                 let enterOtp = document.querySelectorAll('#auth-mfa-otpcode');
@@ -315,7 +315,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         }
         console.log('orderPrice------', typeof orderPrice, orderPrice, '..amazonProductPrice.......', typeof amazonProductPrice, amazonProductPrice);
         //await productViewPage.waitForTimeout(3000);
-        if ( 1 == 1 ) {
+        if ( 1 == 1 && amazonProductPrice>0 ) {
             console.log('if calling-----------');
             //One-time purchase:
             await productViewPage.waitForTimeout(4000);
@@ -510,7 +510,6 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 console.log(typeof selectedState, 'selectedState------', selectedState);
                 if (selectedState) {
                     await productViewPage.select('select[name="address-ui-widgets-enterAddressStateOrRegion"]', selectedState);
-
                 }
                 await productViewPage.waitForTimeout(4000);
                 await productViewPage.evaluate(() => {
@@ -547,9 +546,8 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 
                 //await productViewPage.waitForNavigation({waitUntil : 'domcontentloaded'})
                 await productViewPage.waitForTimeout(5000)
-                console.log('pressing payment option')
                 if(await productViewPage.$('input[name="ppw-instrumentRowSelection"')){
-                    console.log('payment option btn found ---- ')
+                    console.log('payment option found ---- ')
                     await productViewPage.evaluate(()=>{
                         return new Promise((res,rej)=>{
                             let continueButton=document.querySelector('input[name="ppw-instrumentRowSelection"')
@@ -562,15 +560,26 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 }
 
                 await productViewPage.waitForTimeout(5000)
-                console.log('checking break even price --- ')
+                if(await productViewPage.$('input[name="ppw-widgetEvent:SetPaymentPlanSelectContinueEvent"]')){
+                    console.log('payment option button found ---- ')
+                    await productViewPage.evaluate(()=>{
+                        return new Promise((res,rej)=>{
+                            let continueBtn = document.getElementsByName('ppw-widgetEvent:SetPaymentPlanSelectContinueEvent')[0]
+                            continueBtn.click()
+                            res()
+                        })
+                    })
+                }
+                
+                await productViewPage.waitForTimeout(10000)
                 let is_break_even_price_higher = false
-                if(await productViewPage.$('#subtotals-marketplace-table') && result['break_even_price']!=null){
-                    is_break_even_price_higher=await productViewPage.evaluate(()=>{
+                if(await productViewPage.$('#subtotals-marketplace-table')){
+                    console.log('checking break even price --- ')
+                    is_break_even_price_higher=await productViewPage.evaluate((result)=>{
                         return new Promise((res,rej)=>{
                             let rows = document.querySelectorAll('#subtotals-marketplace-table tbody tr')
                             let tableData = rows[rows.length-1].querySelector('td.a-color-price.a-size-medium.a-text-right.grand-total-price.aok-nowrap.a-text-bold.a-nowrap')
                             let price = tableData.innerText.replace('$','').trim()
-                            cart_price=Number(price).toFixed(2)
                             if(parseFloat(price) > parseFloat(result['break_even_price'])){
                                 //is_break_even_price_lower=true
                                 res(false)
@@ -580,25 +589,25 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                                 res(true)
                             }
                         })
-                    })
+                    },result)
+                    console.log('break even price status ----- ',is_break_even_price_higher)
                 }
                 await productViewPage.waitForTimeout(5000)
-                console.log('collecting cart price --- ')
                 let cart_price = 0
                 if(await productViewPage.$('#subtotals-marketplace-table')){
+                    console.log('collecting cart price --- ')
                     cart_price=await productViewPage.evaluate(()=>{
                         return new Promise((res,rej)=>{
                             let rows = document.querySelectorAll('#subtotals-marketplace-table tbody tr')
                             let tableData = rows[rows.length-1].querySelector('td.a-color-price.a-size-medium.a-text-right.grand-total-price.aok-nowrap.a-text-bold.a-nowrap')
                             let price = tableData.innerText.replace('$','').trim()
-                            cart_price=Number(price).toFixed(2)
-                            res(cart_price)
+                            //cart_price=Number(price).toFixed(2)
+                            res(Number(price).toFixed(2))
                         })
                     })
                 }
                 console.log('cart price ---- ',cart_price)
-                console.log('break even price status ----- ',is_break_even_price_higher)
-                if(!is_break_even_price_higher){
+                if(is_break_even_price_higher){
                     await productViewPage.waitForTimeout(5000)
                     console.log('pressing payment continue')
                     if(await productViewPage.$('input[name="ppw-widgetEvent:SetPaymentPlanSelectContinueEvent"')){
@@ -785,6 +794,20 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 }
 
                 
+            }
+        }
+        else{
+            console.log('item unavailable ------ ')
+            details = {
+                asin: asin,
+                amazon_order_number: 'os',
+                purchaseOrderId: purchaseOrderId,
+                customerOrderId: customerOrderId
+            }
+            console.log('details-----', details);
+            if (details.amazon_order_number != '') {
+                Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number,'0');
+                orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: 'out of stock' })
             }
         }
         // productViewPage.close();
