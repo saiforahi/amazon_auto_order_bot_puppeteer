@@ -707,8 +707,8 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                     //orderId orderlink
                     await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
                     await productViewPage.goto('https://www.amazon.com/gp/css/order-history?ref_=abn_bnav_ya_ad_orders')
-                    //await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
-                    await productViewPage.waitForTimeout(4000);
+                    await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
+                    // await productViewPage.waitForTimeout(4000);
                     // await productViewPage.hover('#nav-link-yourAccount')
                     // await productViewPage.waitForTimeout(4000);
                     // await productViewPage.evaluate(() => {
@@ -734,34 +734,26 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                     await productViewPage.screenshot({ path: imagePath });
                     // await productViewPage.waitForSelector("#ordersContainer .a-box-group.a-spacing-base .a-fixed-right-grid-col.actions.a-col-right", { visible: true });
                     let amazonOrderId = await productViewPage.evaluate(async () => {
-                        let id = '';
-                        if(document.querySelectorAll('div.a-row.a-size-mini span.a-color-secondary.value').length>0){
-                            console.log('html order element',document.querySelector('div.a-row.a-size-mini span.a-color-secondary').textContent)
-                            let element= document.querySelectorAll('div.a-row.a-size-mini span.a-color-secondary.value')[0]
-                            if(!element.textContent.includes('Order') && !element.textContent.includes('Total') && !element.textContent.includes('Ship to')&& !element.textContent.includes('Placed by')){
-                                // order_numbers.push(element.innerText)
-                                id=element.innerText
+                        return new Promise((res,rej)=>{
+                            let id = '';
+                            if(document.querySelectorAll('div.a-row.a-size-mini span.a-color-secondary.value').length>0){
+                                console.log('html order element',document.querySelector('div.a-row.a-size-mini span.a-color-secondary').textContent)
+                                let element= document.querySelectorAll('div.a-row.a-size-mini span.a-color-secondary.value')[0]
+                                if(!element.textContent.includes('Order') && !element.textContent.includes('Total') && !element.textContent.includes('Ship to')&& !element.textContent.includes('Placed by')){
+                                    // order_numbers.push(element.innerText)
+                                    id=element.innerText
+                                }
                             }
-                        }
-                        else if(document.querySelectorAll('span.a-color-secondary.value bdi[dir="ltr"]').length>0){
-                            console.log('html order element',document.querySelector('span.a-color-secondary.value bdi[dir="ltr"]').textContent)
-                            let element= document.querySelectorAll('span.a-color-secondary.value bdi[dir="ltr"]')[0]
-                            if(element.textContent.length==17 && !element.textContent.includes('Order') && !element.textContent.includes('SHIP TO')&& !element.textContent.includes('PLACED BY') && !element.textContent.includes('Total')){
-                                // order_numbers.push(element.innerText)
-                                id=element.innerText
+                            else if(document.querySelectorAll('span.a-color-secondary.value bdi[dir="ltr"]').length>0){
+                                console.log('html order element',document.querySelector('span.a-color-secondary.value bdi[dir="ltr"]').textContent)
+                                let element= document.querySelectorAll('span.a-color-secondary.value bdi[dir="ltr"]')[0]
+                                if(element.textContent.length==17 && !element.textContent.includes('Order') && !element.textContent.includes('SHIP TO')&& !element.textContent.includes('PLACED BY') && !element.textContent.includes('Total')){
+                                    // order_numbers.push(element.innerText)
+                                    id=element.innerText
+                                }
                             }
-                        }
-            
-                        // return new Promise((res, rej) => {
-                        // let element = document.querySelectorAll('#ordersContainer .a-box-group.a-spacing-base .a-fixed-right-grid-col.actions.a-col-right');
-                        // console.log(element.length);
-                        // if (element && element.length > 0) {
-                        //     // id.push({ orderId: element[0].innerText.split("\n")[0].substr(8) })
-                        //     id = element[0].innerText.split("\n")[0].substr(8)
-                        //     // res(id);
-                        // }
-                        // });
-                        return id;
+                            res(id);
+                        })
                     });
                     let imagePath1 = path.join(__dirname, "..", "/assets", `/img2.png`);
                     // await saveErrorImg(productViewPage);
