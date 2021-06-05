@@ -788,7 +788,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 
             }
         }
-        else{
+        else if(await productViewPage.$('#outOfStock')){
             console.log('item unavailable ------ ')
             details = {
                 asin: asin,
