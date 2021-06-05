@@ -222,7 +222,7 @@ const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageInd
             method:'get',
             url:'https://gimmeproxy.com/api/getProxy?api_key=514b2f69-76d5-4458-b667-2227c1f7b29e&country=US'
         })
-        if(gimmi_response && gimmi_response.data && gimmi_response.data.websites.amazon == true && parseFloat(gimmi_response.data.speed)>200 && gimmi_response.data.supportsHttps == true){
+        if(gimmi_response && gimmi_response.data && gimmi_response.data.websites.amazon == true && parseFloat(gimmi_response.data.speed)>100 && gimmi_response.data.supportsHttps == true){
             console.log(gimmi_response.data)
             // if(gimmi_response.data.protocol == 'http'){
             //     valid_curl=gimmi_response.data.ipPort
@@ -784,8 +784,6 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                         orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: 'loss' })
                     }
                 }
-
-                
             }
         }
         else if(await productViewPage.$('#outOfStock')){
@@ -798,7 +796,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
             }
             console.log('details-----', details);
             if (details.amazon_order_number != '') {
-                Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number,'0');
+                Service.update_amazon_order_number_API(result['ref_order_id'],details.amazon_order_number,'os');
                 orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: 'out of stock' })
             }
         }
