@@ -1,6 +1,6 @@
-// const amazon = require('./plateform/amazon');
-const schedule = require('./orderSchedule')
+const amazon = require('./plateform/amazon');
+//const schedule = require('./orderSchedule')
 const scrapper = async () => {
-    schedule();
+    amazon();
 }
 module.exports = scrapper;
