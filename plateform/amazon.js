@@ -800,7 +800,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: 'out of stock' })
             }
         }
-        // productViewPage.close();
+        productViewPage.close();
         return;
     } catch (error) {
         console.log('error 287------', error);
