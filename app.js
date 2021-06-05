@@ -27,8 +27,3 @@ scrapper();
 app.listen(port, (req, res) => {
     console.log(`server listening on port: ${port}`);
 });
-
-
-// 1 order completed with cloud bot successfully
-// order number is : 113-8035677-7609866
-//1:30 am 1/6/2021
