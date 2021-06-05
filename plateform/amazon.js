@@ -705,7 +705,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
 
                     console.log('order view link show.');
                     //orderId orderlink
-                    await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
+                    // await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
                     await productViewPage.goto('https://www.amazon.com/gp/css/order-history?ref_=abn_bnav_ya_ad_orders')
                     await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
                     // await productViewPage.waitForTimeout(4000);
