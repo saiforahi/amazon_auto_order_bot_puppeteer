@@ -936,6 +936,7 @@ async function fetchDetails(result) {
         logger.error({ message: error })
     } finally {
         //await browser.close();
+        console.log('orders left ---- ',result.length)
         logger.info({ message: 'browser close process stop' })
         console.log('stop scraping-----------------', new Date().toLocaleTimeString());
     }
