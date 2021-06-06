@@ -216,49 +216,50 @@ const saveErrorImg = async (page) => {
 
 const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice) => {
     let valid_curl=''
-    // console.log('while ip loop ---')
-    // while(1){
-    //     gimmi_response = await axios({
-    //         method:'get',
-    //         url:'https://gimmeproxy.com/api/getProxy?api_key=514b2f69-76d5-4458-b667-2227c1f7b29e&country=US'
-    //     })
-    //     if(gimmi_response && gimmi_response.data && gimmi_response.data.websites.amazon == true && parseFloat(gimmi_response.data.speed)>300 && gimmi_response.data.supportsHttps == true){
-    //         console.log(gimmi_response.data)
-    //         // if(gimmi_response.data.protocol == 'http'){
-    //         //     valid_curl=gimmi_response.data.ipPort
-    //         // }
-    //         // else{
-    //         //     valid_curl=gimmi_response.data.curl
-    //         // }
-    //         valid_curl=gimmi_response.data.curl
-    //         if(valid_curl.includes('<br>')){
-    //             valid_curl=valid_curl.slice(0,valid_curl.length-4)
-    //         }
-    //         console.log('valid curl ---- ',valid_curl)
-    //         break
-    //     }
+    console.log('while ip loop ---')
+    while(1){
+        gimmi_response = await axios({
+            method:'get',
+            url:'https://gimmeproxy.com/api/getProxy?api_key=514b2f69-76d5-4458-b667-2227c1f7b29e&country=US&supportsHttps=true&minSpeed=300&websites=amazon'
+        })
+        if(gimmi_response && gimmi_response.data){
+            console.log(gimmi_response.data)
+            // if(gimmi_response.data.protocol == 'http'){
+            //     valid_curl=gimmi_response.data.ipPort
+            // }
+            // else{
+            //     valid_curl=gimmi_response.data.curl
+            // }
+            valid_curl=gimmi_response.data.curl
+            if(valid_curl.includes('<br>')){
+                valid_curl=valid_curl.slice(0,valid_curl.length-4)
+            }
+            console.log('valid curl ---- ',valid_curl)
+            break
+        }
         
-    // }
+    }
     purchaseProduct(valid_curl,asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice)
 }
 const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice) => {
     let amazonProductPrice = 0, details = {}, amazonOrderNumber = '';
     // '--proxy-server='+curl,
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         timeout: 0,
         ignoreHTTPSErrors: true,
         args: [
             '--no-sandbox', 
             '--disable-setuid-sandbox', 
             '--disable-web-security',  
-            //'--proxy-server='+curl,
+            '--proxy-server='+curl,
             '--disable-features=IsolateOrigins,site-per-process',
             '--disable-dev-shm-usage'
         ]
     });
     // let productViewPage = 'page_' + pageIndex;
-    let productViewPage = await browser.newPage();
+    let pages = await browser.pages()
+    let productViewPage = pages[0];
     try {
         // await productViewPage.setRequestInterception(true);
         // productViewPage.on('request', (req) => {
@@ -291,6 +292,32 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
             waitUntil: 'load', timeout: 0
         });
         await captchaSolver(productViewPage);
+        // if(await productViewPage.$('#glow-ingress-block')){
+        //     await productViewPage.waitForTimeout(3000);
+        //     await productViewPage.evaluate(()=>{
+        //         return new Promise((res,rej)=>{
+        //             let addressbtn=document.getElementById('glow-ingress-block')
+        //             addressbtn.click()
+        //             res()
+        //         })
+        //     })
+        // }
+        
+        // await productViewPage.waitForTimeout(3000)
+        // if(await productViewPage.$('button[name="glowDoneButton"]')){
+            
+        //     await productViewPage.evaluate(()=>{
+        //         return new Promise((res,rej)=>{
+        //             let div=document.getElementById('GLUXZipInputSection')
+        //             let inputEl=div.childNodes[0].querySelector('input')
+        //             inputEl.value='32826'
+        //             let doneBTN=document.querySelector('button[name="glowDoneButton"]')
+        //             doneBTN.click()
+        //             res()
+        //         })
+        //     })
+        //     // await productViewPage.
+        // }
         await productViewPage.waitForTimeout(3000);
         if (await productViewPage.$('#priceblock_ourprice')) {
             let priceSelector = await productViewPage.$$('#priceblock_ourprice');
@@ -706,9 +733,10 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
 
                     console.log('order view link show.');
                     //orderId orderlink
-                    // await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
-                    await productViewPage.goto('https://www.amazon.com/gp/css/order-history?ref_=abn_bnav_ya_ad_orders')
                     await productViewPage.waitForNavigation({waitUntil:'domcontentloaded'});
+                    await productViewPage.goto('https://www.amazon.com/gp/css/order-history?ref_=abn_bnav_ya_ad_orders',{
+                        waitUntil: 'load', timeout: 0
+                    })
                     // await productViewPage.waitForTimeout(4000);
                     // await productViewPage.hover('#nav-link-yourAccount')
                     // await productViewPage.waitForTimeout(4000);
@@ -729,7 +757,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                     // })
 
                     console.log('amazonOrderId-----88--');
-                    await productViewPage.waitForTimeout(4000)
+                    await productViewPage.waitForTimeout(3000)
                     let imagePath = path.join(__dirname, "..", "/assets", `/img1.png`);
                     // await saveErrorImg(productViewPage);
                     await productViewPage.screenshot({ path: imagePath });
@@ -787,7 +815,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 }
             }
         }
-        else if(await productViewPage.$('#outOfStock')){
+        else{
             console.log('item unavailable ------ ')
             details = {
                 asin: asin,
@@ -801,7 +829,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: 'out of stock' })
             }
         }
-        productViewPage.close();
+        //productViewPage.close();
         return;
     } catch (error) {
         console.log('error 287------', error);
@@ -809,7 +837,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
         logger.error({ message: error })
         await saveErrorImg(productViewPage);
     }finally{
-        await browser.close();
+        //await browser.close();
         console.log('browser close-------------');
     }
 }
