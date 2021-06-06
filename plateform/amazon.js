@@ -216,29 +216,29 @@ const saveErrorImg = async (page) => {
 
 const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice) => {
     let valid_curl=''
-    console.log('while ip loop ---')
-    while(1){
-        gimmi_response = await axios({
-            method:'get',
-            url:'https://gimmeproxy.com/api/getProxy?api_key=514b2f69-76d5-4458-b667-2227c1f7b29e&country=US'
-        })
-        if(gimmi_response && gimmi_response.data && gimmi_response.data.websites.amazon == true && parseFloat(gimmi_response.data.speed)>300 && gimmi_response.data.supportsHttps == true){
-            console.log(gimmi_response.data)
-            // if(gimmi_response.data.protocol == 'http'){
-            //     valid_curl=gimmi_response.data.ipPort
-            // }
-            // else{
-            //     valid_curl=gimmi_response.data.curl
-            // }
-            valid_curl=gimmi_response.data.curl
-            if(valid_curl.includes('<br>')){
-                valid_curl=valid_curl.slice(0,valid_curl.length-4)
-            }
-            console.log('valid curl ---- ',valid_curl)
-            break
-        }
+    // console.log('while ip loop ---')
+    // while(1){
+    //     gimmi_response = await axios({
+    //         method:'get',
+    //         url:'https://gimmeproxy.com/api/getProxy?api_key=514b2f69-76d5-4458-b667-2227c1f7b29e&country=US'
+    //     })
+    //     if(gimmi_response && gimmi_response.data && gimmi_response.data.websites.amazon == true && parseFloat(gimmi_response.data.speed)>300 && gimmi_response.data.supportsHttps == true){
+    //         console.log(gimmi_response.data)
+    //         // if(gimmi_response.data.protocol == 'http'){
+    //         //     valid_curl=gimmi_response.data.ipPort
+    //         // }
+    //         // else{
+    //         //     valid_curl=gimmi_response.data.curl
+    //         // }
+    //         valid_curl=gimmi_response.data.curl
+    //         if(valid_curl.includes('<br>')){
+    //             valid_curl=valid_curl.slice(0,valid_curl.length-4)
+    //         }
+    //         console.log('valid curl ---- ',valid_curl)
+    //         break
+    //     }
         
-    }
+    // }
     purchaseProduct(valid_curl,asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice)
 }
 const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice) => {
@@ -252,7 +252,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
             '--no-sandbox', 
             '--disable-setuid-sandbox', 
             '--disable-web-security',  
-            '--proxy-server='+curl,
+            //'--proxy-server='+curl,
             '--disable-features=IsolateOrigins,site-per-process',
             '--disable-dev-shm-usage'
         ]
@@ -313,9 +313,10 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 amazonProductPrice = Number(price);
             }
         }
-        console.log('orderPrice------', typeof orderPrice, orderPrice, '..amazonProductPrice.......', typeof amazonProductPrice, amazonProductPrice);
+        
         //await productViewPage.waitForTimeout(3000);
         if ( 1 == 1 && amazonProductPrice>0 ) {
+            console.log('orderPrice------', typeof orderPrice, orderPrice, '..amazonProductPrice.......', typeof amazonProductPrice, amazonProductPrice);
             console.log('if calling-----------');
             //One-time purchase:
             await productViewPage.waitForTimeout(4000);
