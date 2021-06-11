@@ -829,7 +829,9 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
                 orderIdlogger.info({ asin: asin, purchaseOrderId: purchaseOrderId, amazon_order_number: 'out of stock' })
             }
         }
-        //productViewPage.close();
+        let pages = await browser.pages();
+        await Promise.all(pages.map(page =>page.close()));
+        await browser.close();
         return;
     } catch (error) {
         console.log('error 287------', error);

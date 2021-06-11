@@ -6,106 +6,6 @@
     "auditLog": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\.8c072f66012247011d481f44f502caeb25ccca5f-audit.json",
     "files": [
         {
-            "date": 1622472839872,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-05-31-20.log",
-            "hash": "c55093ea9cf0df5a4c60a7c944a19a0a"
-        },
-        {
-            "date": 1622561143102,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-01-21.log",
-            "hash": "682ed03855e146c5429c306c6d75116c"
-        },
-        {
-            "date": 1622567149138,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-01-23.log",
-            "hash": "1320fc762bb8b5ef4d60595c8b4fea1b"
-        },
-        {
-            "date": 1622617707958,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-02-13.log",
-            "hash": "af26295724eb479f9675daa1ecac5328"
-        },
-        {
-            "date": 1622621016848,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-02-14.log",
-            "hash": "40cf7d8a26c52de89c9b81fbfa1e5747"
-        },
-        {
-            "date": 1622640138999,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-02-19.log",
-            "hash": "05f31d74368e60f6ef12c69277a9276f"
-        },
-        {
-            "date": 1622643482171,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-02-20.log",
-            "hash": "23a6bd0fe95f372433343920e6f7797d"
-        },
-        {
-            "date": 1622646509129,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-02-21.log",
-            "hash": "4fef69235877f196c43df59d1d942c3d"
-        },
-        {
-            "date": 1622652888922,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-02-22.log",
-            "hash": "cb1a065fba4aadcfdc0a3f7be8e617e7"
-        },
-        {
-            "date": 1622658455470,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-03-00.log",
-            "hash": "1445ca4584cc77cb478830d49788df15"
-        },
-        {
-            "date": 1622662147581,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-03-01.log",
-            "hash": "af6a31e1e93cad8c75ca5c5b158a969d"
-        },
-        {
-            "date": 1622664060353,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-03-02.log",
-            "hash": "b76dc43bdb3ea797e5407b10aa1d468a"
-        },
-        {
-            "date": 1622699969801,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-03-11.log",
-            "hash": "0eac63800d240dfe115eef69bd5e4983"
-        },
-        {
-            "date": 1622717062325,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-03-16.log",
-            "hash": "424da25321c983525aec0a4ec85dca2f"
-        },
-        {
-            "date": 1622718024068,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-03-17.log",
-            "hash": "cb500be92782f98dc8606a7c28aceeec"
-        },
-        {
-            "date": 1622722607139,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-03-18.log",
-            "hash": "153ccb34a9558fe882bbe53ab4e1ca50"
-        },
-        {
-            "date": 1622733485711,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-03-21.log",
-            "hash": "ac00f07c6b233bd7d07ffe645a21787e"
-        },
-        {
-            "date": 1622736047488,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-03-22.log",
-            "hash": "e1647e497296b4978dd1b802d314146d"
-        },
-        {
-            "date": 1622791762522,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-04-13.log",
-            "hash": "ecf5c4e56c964eceaa3e733925b3db11"
-        },
-        {
-            "date": 1622794045107,
-            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-04-14.log",
-            "hash": "26e264987881de6cbec681de597dc099"
-        },
-        {
             "date": 1622814203783,
             "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-04-19.log",
             "hash": "e9ddec18e6b1d29d5bd4780e414e79af"
@@ -194,6 +94,21 @@
             "date": 1622980800006,
             "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-06-18.log",
             "hash": "ecce62d6d280dba14ff17a52579cb03d"
+        },
+        {
+            "date": 1622999871965,
+            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-06-23.log",
+            "hash": "14ac8175c217b995d7eebd9ae61bb73d"
+        },
+        {
+            "date": 1623002400004,
+            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-07-00.log",
+            "hash": "aa3b8efe25c565f43f647c79839e2b02"
+        },
+        {
+            "date": 1623418130543,
+            "name": "C:\\projects\\mike_amazon_bot\\amazon_auto_order_bot_puppeteer\\logfiles\\application-2021-06-11-19.log",
+            "hash": "80ebd3f056b299c9e7a11c53df402b17"
         }
     ]
 }
