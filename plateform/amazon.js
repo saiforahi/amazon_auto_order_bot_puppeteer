@@ -216,7 +216,6 @@ const saveErrorImg = async (page) => {
 
 const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice) => {
     let valid_curl=''
-    console.log('while ip loop ---')
     let gimmi_response = await axios({
         method:'get',
         url:'https://gimmeproxy.com/api/getProxy?api_key=514b2f69-76d5-4458-b667-2227c1f7b29e&country=US&supportsHttps=true&minSpeed=200&websites=amazon'

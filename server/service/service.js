@@ -153,8 +153,9 @@ class Service {
 
     static async update_amazon_order_number_API (order_id,order_number,cart_price){
         try {
+            console.log('api post data ---- ',{order_id:order_id,order_number:order_number,purchaseCost:cart_price})
             const resp = await axios.post('https://www.opulentdistributionllc.com/api/v1/order', {order_id:order_id,order_number:order_number,purchaseCost:cart_price});
-            if(resp.statusText == "OK"){
+            if(resp && resp.statusText == "OK"){
                 console.log('order number updated successfully ----- ',order_number);
             }
         } catch (err) {
