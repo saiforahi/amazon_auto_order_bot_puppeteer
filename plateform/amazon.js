@@ -215,26 +215,27 @@ const saveErrorImg = async (page) => {
 }
 
 const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice) => {
-    let valid_curl=''
-    let gimmi_response = await axios({
-        method:'get',
-        url:'https://gimmeproxy.com/api/getProxy?api_key=514b2f69-76d5-4458-b667-2227c1f7b29e&country=US&supportsHttps=true&minSpeed=200&websites=amazon'
-    })
-    if(gimmi_response && gimmi_response.data){
-        console.log(gimmi_response.data)
-        // if(gimmi_response.data.protocol == 'http'){
-        //     valid_curl=gimmi_response.data.ipPort
-        // }
-        // else{
-        //     valid_curl=gimmi_response.data.curl
-        // }
-        valid_curl=gimmi_response.data.curl
-        if(valid_curl.includes('<br>')){
-            valid_curl=valid_curl.slice(0,valid_curl.length-4)
-        }
-        console.log('valid curl ---- ',valid_curl)
-        purchaseProduct(valid_curl,asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice)
-    }
+    // let valid_curl=''
+    // let gimmi_response = await axios({
+    //     method:'get',
+    //     url:'https://gimmeproxy.com/api/getProxy?api_key=514b2f69-76d5-4458-b667-2227c1f7b29e&country=US&supportsHttps=true&minSpeed=200&websites=amazon'
+    // })
+    // if(gimmi_response && gimmi_response.data){
+    //     console.log(gimmi_response.data)
+    //     // if(gimmi_response.data.protocol == 'http'){
+    //     //     valid_curl=gimmi_response.data.ipPort
+    //     // }
+    //     // else{
+    //     //     valid_curl=gimmi_response.data.curl
+    //     // }
+    //     valid_curl=gimmi_response.data.curl
+    //     if(valid_curl.includes('<br>')){
+    //         valid_curl=valid_curl.slice(0,valid_curl.length-4)
+    //     }
+    //     console.log('valid curl ---- ',valid_curl)
+    //     purchaseProduct('196.19.212.231:14806',asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice)
+    // }
+    purchaseProduct('196.19.212.231:14806',asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice)
 }
 const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice) => {
     let amazonProductPrice = 0, details = {}, amazonOrderNumber = '';
