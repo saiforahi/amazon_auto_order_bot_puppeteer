@@ -239,7 +239,7 @@ const get_proxy = async (asin, purchaseOrderId, customerOrderId, result, pageInd
 }
 const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, result, pageIndex, orderPrice) => {
     let amazonProductPrice = 0, details = {}, amazonOrderNumber = '';
-    // '--proxy-server='+curl,
+    console.log('proxy_ip------', result['proxy_ip'])
     const browser = await puppeteer.launch({
         headless: true,
         timeout: 0,
@@ -248,7 +248,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
             '--no-sandbox', 
             '--disable-setuid-sandbox', 
             '--disable-web-security',  
-            '--proxy-server='+curl,
+            '--proxy-server='+result['proxy_ip'],
             '--disable-features=IsolateOrigins,site-per-process',
             '--disable-dev-shm-usage'
         ]
@@ -256,6 +256,7 @@ const purchaseProduct = async (curl,asin, purchaseOrderId, customerOrderId, resu
     // let productViewPage = 'page_' + pageIndex;
     let pages = await browser.pages()
     let productViewPage = pages[0];
+    await productViewPage.authenticate({ username:result['ip_uid'], password:result['ip_pw'] });
     try {
         // await productViewPage.setRequestInterception(true);
         // productViewPage.on('request', (req) => {
@@ -943,7 +944,7 @@ const amazon = async (count, i) => {
     logger.info({message:'process start------'})
     console.log('calling API ----- ')
     //const getProductAsin = await Service.sendPostRequest();
-    axios.post('https://www.opulentdistributionllc.com/api/v1/getAmazonOrderData', {amazon_buyer_account:'mikebuyer8@gmail.com'}).then(async(resp)=>{
+    axios.post('https://www.opulentdistributionllc.com/api/v1/getAmazonOrderData', {"amazon_buyer_account":"mikebuyer8@gmail.com"}).then(async(resp)=>{
         //console.log('total orders from response ----- ',resp.data.data.length);
         const getProductAsin=resp.data.data
         console.log('totaldata.........', getProductAsin.length);
