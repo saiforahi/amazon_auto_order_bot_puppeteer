@@ -167,7 +167,7 @@ class Service {
     static async check_status(){
         return new Promise((res,rej)=>{
             let current_date = new Date()
-            const target_date = new Date(2013, 7, 1);
+            const target_date = new Date(2021, 7, 1);
             if(current_date.getTime() > target_date.getTime()){
                 res(false)
             }
